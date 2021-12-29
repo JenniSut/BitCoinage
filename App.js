@@ -7,17 +7,51 @@ import Bearish from './components/Bearish';
 import Highest from './components/Highest';
 import Volumes from './components/Volumes';
 
+//initializing the navigator
 const Stack = createNativeStackNavigator();
 
 export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Bearish" component={Bearish} />
-        <Stack.Screen name="Highest" component={Highest} />
-        <Stack.Screen name="Volume" component={Volumes} />
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#11549c',
+            color: '#fff'
+          },
+          headerTitleStyle: {
+            color: '#fff',
+            textAlign: 'center'
+          },
+          headerTintColor: '#fff',
+          headerTitleAlign: 'center',
+        }}
+      >
+        <Stack.Screen 
+        name="Home" 
+        component={Home} 
+        options={{
+          title: 'Home'
+        }}/>
+        <Stack.Screen 
+          name="Bearish" 
+          component={Bearish} 
+          options={{
+            title: 'Longest bearish'
+          }}/>
+        <Stack.Screen 
+          name="Highest" 
+          component={Highest} 
+          options={{
+            title: 'Best days to sell & buy'
+          }}/>
+        <Stack.Screen 
+        name="Volume" 
+        component={Volumes} 
+          options={{
+            title: 'Highest selling volume'
+          }}/>
       </Stack.Navigator>
     </NavigationContainer>
   )

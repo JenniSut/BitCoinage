@@ -4,9 +4,9 @@
     "slug": "bitcoinage",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./pictures/bitcoin.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./pictures/bitcoin.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
