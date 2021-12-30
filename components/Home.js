@@ -3,14 +3,15 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-export default function Home({navigation}) {
+export default function Home({ navigation }) {
 
     const [fromDate, setFromDate] = useState(new Date());
     const [toDate, setToDate] = useState(new Date());
-    const [mode, setMode] = useState('date');
     const [fromShow, setFromShow] = useState(false);
     const [toShow, setToShow] = useState(false);
+    const mode = 'date';
 
+    //datetime-picker handeling
     const onFromChange = (event, selectedDate) => {
         let currentDate = selectedDate || fromDate;
         setFromShow(Platform.OS === 'ios');
@@ -21,30 +22,20 @@ export default function Home({navigation}) {
     const onToChange = (event, selectedDate) => {
         let currentDate = selectedDate || toDate;
         setToShow(Platform.OS === 'ios');
-        currentDate.setUTCHours(0,0,0,0);
+        currentDate.setUTCHours(0, 0, 0, 0);
         setToDate(currentDate);
     };
 
-    const showFromMode = (currentMode) => {
+    const showFromMode = () => {
         setFromShow(true);
-        setMode(currentMode);
     };
 
-    const showToMode = (currentMode) => {
+    const showToMode = () => {
         setToShow(true);
-        setMode(currentMode);
     };
 
-    const showFromDatepicker = () => {
-        showFromMode('date');
-    };
-
-    const showToDatepicker = () => {
-        showToMode('date');
-    };
-
+    //navigation handeling
     const pressedBearish = () => {
-        
         const unixFrom = parseInt((fromDate.getTime() / 1000).toFixed(0))
         const unixTo = parseInt((toDate.getTime() / 1000).toFixed(0))
         navigation.navigate('Bearish', { unixFrom, unixTo })
@@ -63,23 +54,20 @@ export default function Home({navigation}) {
     }
 
     const formatDate = (date) => {
-
         const formatedDate = date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear()
-        return(formatedDate)
+        return (formatedDate)
     }
     return (
         <View style={styles.container}>
-            
-            <View style={styles.pickContainer}> 
+
+            <View style={styles.pickContainer}>
                 <View style={styles.buttoncontainer}>
-                    <Pressable style={styles.button} onPress={showFromDatepicker }>
+                    <Pressable style={styles.button} onPress={showFromMode}>
                         <Text style={styles.buttonText}>Pick a 'from' date</Text>
                     </Pressable>
-                    <Pressable style={styles.button} onPress={showToDatepicker}>
+                    <Pressable style={styles.button} onPress={showToMode}>
                         <Text style={styles.buttonText}>Pick a 'to' date</Text>
                     </Pressable>
-                    {/*<Button  onPress={showFromDatepicker} title="Pick a 'from' date" />
-                    <Button onPress={showToDatepicker} title="Pick a 'to' date " />*/}
                 </View>
                 {fromShow && (
                     <DateTimePicker
@@ -101,8 +89,6 @@ export default function Home({navigation}) {
                 )}
                 <View style={styles.datecontainer}>
                     <Text style={styles.dateText} >from: {formatDate(fromDate)} |</Text>
-                {/*</View>
-                <View>*/}
                     <Text style={styles.dateText}> to: {formatDate(toDate)}</Text>
                 </View>
             </View>
@@ -112,7 +98,7 @@ export default function Home({navigation}) {
             <Pressable style={styles.button} onPress={() => { pressedVolumes() }}>
                 <Text style={styles.buttonText}>Check selling volumes</Text>
             </Pressable>
-            <Pressable style={styles.button} onPress={() => {pressedBearish()}}>
+            <Pressable style={styles.button} onPress={() => { pressedBearish() }}>
                 <Text style={styles.buttonText}>Check the longest bearish</Text>
             </Pressable>
             <Pressable style={styles.button} onPress={() => { pressedHighest() }}>
@@ -144,7 +130,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: 'black',
         padding: 20,
-        
+
     },
     buttoncontainer: {
         flexDirection: 'row',

@@ -49,9 +49,9 @@ export default function Bearish({ route, navigation }) {
         };
         return (
             <View>
-                {longest != 1 ? <Text style={styles.text}>The longest bearish trend was: {longest} days</Text>: 
-                <Text style={styles.text}>The longest bearish trend was: {longest} day</Text>
-                }  
+                {longest != 1 ? <Text style={styles.text}>The longest bearish trend was: {longest} days</Text> :
+                    <Text style={styles.text}>The longest bearish trend was: {longest} day</Text>
+                }
             </View>
         );
     };
@@ -66,7 +66,7 @@ export default function Bearish({ route, navigation }) {
                         checkBearish()
                     )
                 }
-            </View>    
+            </View>
         </View>
     )
 }

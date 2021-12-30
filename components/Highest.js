@@ -21,7 +21,7 @@ export default function Highest({ route, navigation }) {
             if (unixTo - unixFrom <= 7776000) {
                 var array = json.prices.filter((i, index) => (index % 24 === 0))
                 setData(array)
-            }else {
+            } else {
                 setData(json.prices)
             }
         } catch (error) {
@@ -47,30 +47,30 @@ export default function Highest({ route, navigation }) {
 
     //Checking the highest and lowest prices and dates for comparing
     const checkHighest = () => {
-            let highest = 0;
-            let lowest = 10000000000000;
-            let date = 0;
-            let lowDate = 0;
-            for (let i = 0; i < data.length; i++) {
+        let highest = 0;
+        let lowest = 10000000000000;
+        let date = 0;
+        let lowDate = 0;
+        for (let i = 0; i < data.length; i++) {
 
-                for (let j = 0; j < data[i].length; j++) {
-                    if (data[i][1] >= highest) {
-                        highest = data[i][1];
-                        date = data[i][0];
-                    } else if (data[i][1] < lowest) {
-                        lowest = data[i][1];
-                        lowDate = data[i][0];
-                      }
+            for (let j = 0; j < data[i].length; j++) {
+                if (data[i][1] >= highest) {
+                    highest = data[i][1];
+                    date = data[i][0];
+                } else if (data[i][1] < lowest) {
+                    lowest = data[i][1];
+                    lowDate = data[i][0];
                 }
-            };
+            }
+        };
 
-            return (
-                (lowDate > date) ?
-                    <Text style={styles.text}>You shouldn't buy (or sell) bitcoin between {changeDate(unixFrom)} and {changeDate(unixTo)}!</Text>
-                    : <Text style={styles.text}>The best day to buy Bitcoin between {changeDate(unixFrom)} and {changeDate(unixTo)} was 
-                        <Text style={{ fontWeight: 'bold' }}> {showDate(lowDate)}</Text> with the price of {lowest}€.{"\n"}And the best day to sell was 
-                     <Text style={{ fontWeight: 'bold' }}> {showDate(date)}</Text> with the price of {highest}€</Text>
-            )
+        return (
+            (lowDate > date) ?
+                <Text style={styles.text}>You shouldn't buy (or sell) bitcoin between {changeDate(unixFrom)} and {changeDate(unixTo)}!</Text>
+                : <Text style={styles.text}>The best day to buy Bitcoin between {changeDate(unixFrom)} and {changeDate(unixTo)} was
+                    <Text style={{ fontWeight: 'bold' }}> {showDate(lowDate)}</Text> with the price of {lowest}€.{"\n"}And the best day to sell was
+                    <Text style={{ fontWeight: 'bold' }}> {showDate(date)}</Text> with the price of {highest}€</Text>
+        )
     };
 
     return (
@@ -78,10 +78,10 @@ export default function Highest({ route, navigation }) {
             <View style={styles.textContainer}>
                 {/*if the given dates are the same or if the 'from' date is after the 'to' date
                     we'll ask the user to give other dates.*/ }
-                {unixFrom >= unixTo ? <Text style={styles.text} >Please pick other dates</Text> : 
-                isLoading ? <ActivityIndicator /> : (
-                    checkHighest()
-                )
+                {unixFrom >= unixTo ? <Text style={styles.text} >Please pick other dates</Text> :
+                    isLoading ? <ActivityIndicator /> : (
+                        checkHighest()
+                    )
                 }
             </View>
         </View>
