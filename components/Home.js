@@ -37,19 +37,19 @@ export default function Home({ navigation }) {
     //navigation handeling
     const pressedBearish = () => {
         const unixFrom = parseInt((fromDate.getTime() / 1000).toFixed(0))
-        const unixTo = parseInt((toDate.getTime() / 1000).toFixed(0))
+        const unixTo = parseInt((toDate.getTime() / 1000 + 3600).toFixed(0))
         navigation.navigate('Bearish', { unixFrom, unixTo })
     }
 
     const pressedHighest = () => {
         const unixFrom = parseInt((fromDate.getTime() / 1000).toFixed(0))
-        const unixTo = parseInt((toDate.getTime() / 1000).toFixed(0))
+        const unixTo = parseInt((toDate.getTime() / 1000 + 3600).toFixed(0))
         navigation.navigate('Highest', { unixFrom, unixTo })
     }
 
     const pressedVolumes = () => {
         const unixFrom = parseInt((fromDate.getTime() / 1000).toFixed(0))
-        const unixTo = parseInt((toDate.getTime() / 1000).toFixed(0))
+        const unixTo = parseInt((toDate.getTime() / 1000 + 3600).toFixed(0))
         navigation.navigate('Volume', { unixFrom, unixTo })
     }
 
